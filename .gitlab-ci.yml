@@ -1,0 +1,10 @@
+stages:
+  - deploy
+
+mvn-deploy:
+  stage: deploy
+  image: ${MTR_REGISTRY}/${MTR_ORGANISATION}/maven:3.9.9-eclipse-temurin-21-alpine
+  script:
+    - 'mvn deploy -s ci_settings.xml -Dmaven.test.failure.ignore=true'
+  only:
+    - "master"
